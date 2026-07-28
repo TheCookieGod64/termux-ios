@@ -1,0 +1,19 @@
+# Cross toolchain and SDKs (multiple GB, fetched by `make toolchain`)
+.toolchain/
+
+# Build output
+build/
+*.ipa
+*.o
+*.dSYM/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# Editors
+.vscode/
+.idea/
+*.swp
+.DS_Store

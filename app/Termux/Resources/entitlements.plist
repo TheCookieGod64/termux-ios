@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<!-- Treats the app as a platform binary: required before any of the
+	     private entitlements below are honoured by AMFI. -->
+	<key>platform-application</key>
+	<true/>
+
+	<!-- Leave the app sandbox so posix_spawn() and access to the bootstrap
+	     prefix work.  Without this, spawning a shell fails with EPERM. -->
+	<key>com.apple.private.security.no-sandbox</key>
+	<true/>
+
+	<!-- platform-application tightens container access; this gives it back. -->
+	<key>com.apple.private.security.storage.AppDataContainers</key>
+	<true/>
+
+	<!-- Allows spawning binaries under a different persona (root helpers). -->
+	<key>com.apple.private.persona-mgmt</key>
+	<true/>
+
+	<!-- Keep running in the background so long builds/downloads survive
+	     the user switching apps. -->
+	<key>com.apple.developer.networking.multipath</key>
+	<true/>
+
+	<!-- Debugging/child-process management: lets us signal our own children. -->
+	<key>com.apple.security.exception.files.absolute-path.read-write</key>
+	<array>
+		<string>/</string>
+	</array>
+
+	<!-- Raise the memory limit ceiling so heavy compiles are not jetsammed. -->
+	<key>com.apple.private.memorystatus</key>
+	<true/>
+	<key>com.apple.developer.kernel.increased-memory-limit</key>
+	<true/>
+	<key>com.apple.developer.kernel.extended-virtual-addressing</key>
+	<true/>
+
+	<!-- Unrestricted JIT-less execution of downloaded binaries is what makes
+	     apt-installed tools runnable. -->
+	<key>dynamic-codesigning</key>
+	<true/>
+</dict>
+</plist>

@@ -1,0 +1,42 @@
+name: build
+
+on:
+  push:
+    branches: ['**']
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Cache toolchain
+        id: toolchain-cache
+        uses: actions/cache@v4
+        with:
+          path: .toolchain
+          key: toolchain-${{ runner.os }}-sdk16.5-v1
+
+      - name: Set up toolchain
+        if: steps.toolchain-cache.outputs.cache-hit != 'true'
+        run: make toolchain
+
+      - name: Run tests
+        run: make test
+
+      - name: Build ipa
+        run: make ipa
+
+      - name: Verify signature
+        run: python3 tools/verify_signature.py build/Payload/Termux.app/Termux
+
+      - name: Upload ipa
+        uses: actions/upload-artifact@v4
+        with:
+          name: Termux-ipa
+          path: build/Termux.ipa
+          if-no-files-found: error
