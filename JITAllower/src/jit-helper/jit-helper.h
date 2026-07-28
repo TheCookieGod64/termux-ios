@@ -1,8 +1,9 @@
 /*
  * jit-helper.h
- * JITAllower Native C Helper for iPhone 8 (iOS 15/16) | TrollStore | palera1n
+ * JITAllower Real Native C Helper for iPhone 8 (iOS 15/16) | TrollStore | palera1n
  *
- * Enables JIT (CS_DEBUGGED / dynamic code execution) on target iOS processes.
+ * Uses real Darwin kernel syscalls (sysctl, ptrace, csops) to enumerate
+ * active running processes and inject CS_DEBUGGED kernel flag for JIT.
  */
 
 #ifndef JIT_HELPER_H
@@ -16,8 +17,7 @@
 #include <sys/types.h>
 #include <signal.h>
 
-#define JITALLOWER_VERSION "1.0.0-ios"
-#define DEFAULT_JB_ROOT "/var/jb"
+#define JITALLOWER_VERSION "1.1.0-ios-native"
 
 /* Function prototypes */
 void print_banner(void);

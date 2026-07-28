@@ -1,8 +1,9 @@
 /*
  * jit-helper.c
- * JITAllower Native C Helper for iPhone 8 | iOS 15/16 | TrollStore | palera1n
+ * JITAllower Real Native C Helper for iPhone 8 | iOS 15/16 | TrollStore | palera1n
  *
- * Enables JIT (CS_DEBUGGED flag) on target processes by attaching a transient ptrace debugger.
+ * Real kernel process enumeration via Darwin sysctl / libproc and real ptrace() CS_DEBUGGED injection.
+ * No hardcoded sample PIDs.
  */
 
 #include "jit-helper.h"
@@ -11,7 +12,9 @@
 #include <sys/stat.h>
 
 #if defined(__APPLE__)
+#include <sys/sysctl.h>
 #include <sys/ptrace.h>
+#include <libproc.h>
 #ifndef PT_ATTACHEXC
 #define PT_ATTACHEXC 14
 #endif
@@ -22,8 +25,9 @@
 
 void print_banner(void) {
     printf("===============================================================\n");
-    printf("  JITAllower — Native JIT Enabler for iOS 15/16 (v%s)\n", JITALLOWER_VERSION);
+    printf("  JITAllower — Real Native JIT Enabler for iOS 15/16 (v%s)\n", JITALLOWER_VERSION);
     printf("  Target: iPhone 8 | palera1n (/var/jb) | TrollStore\n");
+    printf("  Kernel Syscalls: ptrace(PT_ATTACHEXC) & libproc process table\n");
     printf("===============================================================\n");
 }
 
@@ -33,7 +37,7 @@ void print_usage(const char *progname) {
     printf("  -h, --help           Display this help message and exit\n");
     printf("  -p, --enable <pid>   Enable JIT on specific Process ID (PID)\n");
     printf("  -a, --all            Enable JIT on all running user applications\n");
-    printf("  -l, --list           List running applications and JIT eligibility\n");
+    printf("  -l, --list           List real running iOS applications from kernel\n");
     printf("\n");
 }
 
@@ -63,39 +67,110 @@ int enable_jit_for_pid(pid_t pid) {
         return -1;
     }
 #else
-    /* Non-Darwin fallback / simulator / Linux test mode */
-    printf("[JITAllower] [✔] Simulated JIT enablement for PID %d (host mode).\n", pid);
+    /* Non-Darwin build host check */
+    printf("[JITAllower] [Host Note] Built on non-Darwin kernel. On iOS, ptrace(PT_ATTACHEXC, %d, 0, 0) is executed.\n", pid);
     return 0;
 #endif
 }
 
 int list_running_apps(void) {
-    printf("[JITAllower] Listing running user applications:\n");
-    printf("--------------------------------------------------\n");
-    printf(" PID    Name                   JIT Status\n");
-    printf("--------------------------------------------------\n");
-    printf(" 1024   DolphiniOS.app         Eligible\n");
-    printf(" 1056   UTM.app                Eligible\n");
-    printf(" 1089   PPSSPP.app             Eligible\n");
-    printf(" 1102   PojavLauncher.app      Eligible\n");
-    printf("--------------------------------------------------\n");
+    printf("[JITAllower] Querying kernel process table for running iOS applications...\n");
+    printf("----------------------------------------------------------------------\n");
+    printf(" PID     Name                   Path\n");
+    printf("----------------------------------------------------------------------\n");
+
+#if defined(__APPLE__)
+    pid_t pids[2048];
+    int count = proc_listpids(PROC_ALL_PIDS, 0, pids, sizeof(pids));
+    int num_pids = count / sizeof(pid_t);
+    int found = 0;
+
+    for (int i = 0; i < num_pids; i++) {
+        pid_t pid = pids[i];
+        if (pid <= 1) continue;
+
+        char path[PROC_PIDPATHINFO_MAXSIZE];
+        char name[256];
+        memset(path, 0, sizeof(path));
+        memset(name, 0, sizeof(name));
+
+        if (proc_pidpath(pid, path, sizeof(path)) > 0) {
+            proc_name(pid, name, sizeof(name));
+            /* Filter for user applications in iOS bundle containers */
+            if (strstr(path, "/containers/Bundle/Application/") != NULL ||
+                strstr(path, "/Applications/") != NULL) {
+                printf(" %-7d %-22s %s\n", pid, name, path);
+                found++;
+            }
+        }
+    }
+    if (found == 0) {
+        printf(" [!] No active user applications currently running in foreground/background.\n");
+    }
+#else
+    /* Non-Darwin Linux Host: Inspect /proc to show real running PIDs on host system */
+    DIR *dir = opendir("/proc");
+    int found = 0;
+    if (dir != NULL) {
+        struct dirent *ent;
+        while ((ent = readdir(dir)) != NULL && found < 8) {
+            if (isdigit(ent->d_name[0])) {
+                pid_t pid = (pid_t)atoi(ent->d_name);
+                char cmdline_path[256];
+                snprintf(cmdline_path, sizeof(cmdline_path), "/proc/%d/comm", pid);
+                FILE *fp = fopen(cmdline_path, "r");
+                if (fp) {
+                    char comm[128];
+                    if (fgets(comm, sizeof(comm), fp)) {
+                        comm[strcspn(comm, "\r\n")] = 0;
+                        printf(" %-7d %-22s /proc/%d\n", pid, comm, pid);
+                        found++;
+                    }
+                    fclose(fp);
+                }
+            }
+        }
+        closedir(dir);
+    }
+    printf(" [Note] Running on Linux build host. On iOS, proc_listpids() enumerates /var/containers/Bundle/Application/.\n");
+#endif
+
+    printf("----------------------------------------------------------------------\n");
     return 0;
 }
 
 int enable_jit_all_user_apps(void) {
-    printf("[JITAllower] Enabling JIT on all detected user applications...\n");
-    /* In actual iOS execution, we iterate user app PIDs via sysctl/proc.
-     * Here we demonstrate successful enablement across simulated/detected targets. */
-    pid_t sample_pids[] = { 1024, 1056, 1089, 1102 };
-    int count = sizeof(sample_pids) / sizeof(sample_pids[0]);
+    printf("[JITAllower] Scanning kernel process table to unlock JIT across all user applications...\n");
+
+#if defined(__APPLE__)
+    pid_t pids[2048];
+    int count = proc_listpids(PROC_ALL_PIDS, 0, pids, sizeof(pids));
+    int num_pids = count / sizeof(pid_t);
     int success = 0;
-    for (int i = 0; i < count; i++) {
-        if (enable_jit_for_pid(sample_pids[i]) == 0) {
-            success++;
+    int targets = 0;
+
+    for (int i = 0; i < num_pids; i++) {
+        pid_t pid = pids[i];
+        if (pid <= 1 || pid == getpid()) continue;
+
+        char path[PROC_PIDPATHINFO_MAXSIZE];
+        if (proc_pidpath(pid, path, sizeof(path)) > 0) {
+            /* Check if process is an iOS user app or emulator in container */
+            if (strstr(path, "/containers/Bundle/Application/") != NULL ||
+                strstr(path, "/Applications/") != NULL) {
+                targets++;
+                if (enable_jit_for_pid(pid) == 0) {
+                    success++;
+                }
+            }
         }
     }
-    printf("[JITAllower] [✔] Completed JIT enablement: %d/%d applications unlocked.\n", success, count);
+    printf("[JITAllower] [✔] Real JIT enablement complete: %d/%d user applications unlocked.\n", success, targets);
+    return (targets > 0 && success == targets) ? 0 : (targets == 0 ? 0 : 1);
+#else
+    printf("[JITAllower] [Host Note] On iOS kernel, proc_listpids() enumerates all active PIDs and calls ptrace(PT_ATTACHEXC, pid, 0, 0) dynamically.\n");
     return 0;
+#endif
 }
 
 int main(int argc, char *argv[]) {
