@@ -1,0 +1,314 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		120000012C50000100000001 /* JITAllowerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120000012C50000200000001 /* JITAllowerApp.swift */; };
+		120000022C50000100000001 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120000022C50000200000001 /* AppDelegate.swift */; };
+		120000032C50000100000001 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120000032C50000200000001 /* MainView.swift */; };
+		120000042C50000100000001 /* AppSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120000042C50000200000001 /* AppSelectionView.swift */; };
+		120000052C50000100000001 /* AppItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120000052C50000200000001 /* AppItem.swift */; };
+		120000062C50000100000001 /* JITManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120000062C50000200000001 /* JITManager.swift */; };
+		120000072C50000100000001 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 120000072C50000200000001 /* Assets.xcassets */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		120000002C50000000000001 /* JITAllower.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "JITAllower.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		120000012C50000200000001 /* JITAllowerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JITAllowerApp.swift; sourceTree = "<group>"; };
+		120000022C50000200000001 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		120000032C50000200000001 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		120000042C50000200000001 /* AppSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSelectionView.swift; sourceTree = "<group>"; };
+		120000052C50000200000001 /* AppItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppItem.swift; sourceTree = "<group>"; };
+		120000062C50000200000001 /* JITManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JITManager.swift; sourceTree = "<group>"; };
+		120000072C50000200000001 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		120000082C50000200000001 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		120000092C50000200000001 /* JITAllower.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "JITAllower.entitlements"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		120000002C50000A00000001 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		120000002C50000B00000001 = {
+			isa = PBXGroup;
+			children = (
+				120000002C50000C00000001 /* JITAllower */,
+				120000002C50000D00000001 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		120000002C50000C00000001 /* JITAllower */ = {
+			isa = PBXGroup;
+			children = (
+				120000002C50000E00000001 /* App */,
+				120000002C50000F00000001 /* Views */,
+				120000002C50001000000001 /* Core */,
+				120000072C50000200000001 /* Assets.xcassets */,
+				120000082C50000200000001 /* Info.plist */,
+				120000092C50000200000001 /* JITAllower.entitlements */,
+			);
+			path = "";
+			sourceTree = "<group>";
+		};
+		120000002C50000E00000001 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				120000012C50000200000001 /* JITAllowerApp.swift */,
+				120000022C50000200000001 /* AppDelegate.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		120000002C50000F00000001 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				120000032C50000200000001 /* MainView.swift */,
+				120000042C50000200000001 /* AppSelectionView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		120000002C50001000000001 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				120000052C50000200000001 /* AppItem.swift */,
+				120000062C50000200000001 /* JITManager.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		120000002C50000D00000001 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				120000002C50000000000001 /* JITAllower.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		120000002C50001200000001 /* JITAllower */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 120000002C50001500000001 /* Build configuration list for PBXNativeTarget "JITAllower" */;
+			buildPhases = (
+				120000002C50001300000001 /* Sources */,
+				120000002C50000A00000001 /* Frameworks */,
+				120000002C50001400000001 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "JITAllower";
+			productName = "JITAllower";
+			productReference = 120000002C50000000000001 /* JITAllower.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		120000002C50001600000001 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1500;
+				LastUpgradeCheck = 1500;
+				TargetAttributes = {
+					120000002C50001200000001 = {
+						CreatedOnToolsVersion = 15.0;
+					};
+				};
+			};
+			buildConfigurationList = 120000002C50001700000001 /* Build configuration list for PBXProject "JITAllower" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 120000002C50000B00000001;
+			productRefGroup = 120000002C50000D00000001 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				120000002C50001200000001 /* JITAllower */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		120000002C50001400000001 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				120000072C50000100000001 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		120000002C50001300000001 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				120000012C50000100000001 /* JITAllowerApp.swift in Sources */,
+				120000022C50000100000001 /* AppDelegate.swift in Sources */,
+				120000032C50000100000001 /* MainView.swift in Sources */,
+				120000042C50000100000001 /* AppSelectionView.swift in Sources */,
+				120000052C50000100000001 /* AppItem.swift in Sources */,
+				120000062C50000100000001 /* JITManager.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		120000002C50001800000001 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		120000002C50001900000001 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		120000002C50001A00000001 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "JITAllower.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = JITAllower;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cookie.jitallower;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		120000002C50001B00000001 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "JITAllower.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = JITAllower;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cookie.jitallower;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		120000002C50001700000001 /* Build configuration list for PBXProject "JITAllower" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				120000002C50001800000001 /* Debug */,
+				120000002C50001900000001 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		120000002C50001500000001 /* Build configuration list for PBXNativeTarget "JITAllower" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				120000002C50001A00000001 /* Debug */,
+				120000002C50001B00000001 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+	};
+	rootObject = 120000002C50001600000001 /* Project object */;
+}

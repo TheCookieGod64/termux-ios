@@ -1,0 +1,13 @@
+# JITAllower Git Ignore
+/dist/
+*.ipa
+*.tipa
+*.tar
+*.zip
+*.o
+*.dylib
+build/
+DerivedData/
+*.xcuserstate
+xcuserdata/
+.DS_Store

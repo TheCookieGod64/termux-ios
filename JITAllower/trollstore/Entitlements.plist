@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <!-- TrollStore Platform Application Entitlements -->
+    <key>platform-application</key>
+    <true/>
+    <key>com.apple.private.security.no-sandbox</key>
+    <true/>
+    <key>com.apple.private.security.no-container</key>
+    <true/>
+
+    <!-- Process Debugger & JIT Injection Entitlements -->
+    <key>task_for_pid-allow</key>
+    <true/>
+    <key>com.apple.system-task-ports</key>
+    <true/>
+    <key>get-task-allow</key>
+    <true/>
+    <key>com.apple.private.cs.debugger</key>
+    <true/>
+
+    <!-- Process Spawning and Kernel Inspection -->
+    <key>com.apple.private.posix_spawn-allow</key>
+    <true/>
+    <key>com.apple.private.kernel.get-kext-info</key>
+    <true/>
+    <key>com.apple.private.vfs.pivot-root</key>
+    <true/>
+</dict>
+</plist>
