@@ -26,6 +26,7 @@
 		110000112C50000100000001 /* DefaultConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110000112C50000200000001 /* DefaultConfig.swift */; };
 		110000122C50000100000001 /* IPCManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110000122C50000200000001 /* IPCManager.swift */; };
 		110000132C50000100000001 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 110000132C50000200000001 /* Assets.xcassets */; };
+		110000162C50000100000001 /* TerminalInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110000162C50000200000001 /* TerminalInputView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +52,7 @@
 		110000132C50000200000001 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		110000142C50000200000001 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		110000152C50000200000001 /* Termux-iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Termux-iOS.entitlements"; sourceTree = "<group>"; };
+		110000162C50000200000001 /* TerminalInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerminalInputView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +108,7 @@
 				110000082C50000200000001 /* SettingsView.swift */,
 				110000092C50000200000001 /* ColorSchemeView.swift */,
 				1100000A2C50000200000001 /* PacmanSettingsView.swift */,
+				110000162C50000200000001 /* TerminalInputView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -226,6 +229,7 @@
 				110000102C50000100000001 /* TermuxProperties.swift in Sources */,
 				110000112C50000100000001 /* DefaultConfig.swift in Sources */,
 				110000122C50000100000001 /* IPCManager.swift in Sources */,
+				110000162C50000100000001 /* TerminalInputView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

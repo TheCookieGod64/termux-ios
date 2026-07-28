@@ -2,7 +2,7 @@
 //  TerminalView.swift
 //  Termux-iOS
 //
-//  VT100 Terminal SwiftUI View with touch gestures, extra keys, and pinch-to-zoom.
+//  VT100 Terminal SwiftUI View with interactive iOS keyboard input, cursor rendering, and Extra Keys.
 //
 
 import SwiftUI
@@ -14,6 +14,7 @@ public struct TerminalView: View {
     @State private var isKeyboardVisible: Bool = true
     @State private var showingContextMenu: Bool = false
     @State private var currentZoom: CGFloat = 1.0
+    @State private var cursorVisible: Bool = true
     
     public init(session: TerminalSession) {
         self.session = session
@@ -24,20 +25,32 @@ public struct TerminalView: View {
             Color(hex: props.currentTheme.backgroundHex)
                 .edgesIgnoringSafeArea(.all)
             
+            // Hidden UIKit Keyboard Bridge (UIKeyInput)
+            TerminalKeyboardRepresentable(session: session, isKeyboardVisible: $isKeyboardVisible)
+                .frame(width: 1, height: 1)
+                .opacity(0.01)
+            
             VStack(spacing: 0) {
                 // Terminal Display Area
                 ScrollView(.vertical, showsIndicators: true) {
                     VStack(alignment: .leading, spacing: 0) {
-                        let lines = renderLines()
+                        let lines = renderLinesWithCursor()
                         ForEach(0..<lines.count, id: \.self) { rowIdx in
                             HStack(spacing: 0) {
-                                Text(lines[rowIdx])
-                                    .font(.system(size: props.fontSize * currentZoom, weight: .regular, design: .monospaced))
-                                    .foregroundColor(Color(hex: props.currentTheme.foregroundHex))
-                                    .lineLimit(1)
+                                let lineText = lines[rowIdx]
+                                let isCursorRow = (rowIdx == session.buffer.cursorRow)
+                                
+                                if isCursorRow && cursorVisible {
+                                    renderCursorLine(rowText: lineText, cursorCol: session.buffer.cursorCol)
+                                } else {
+                                    Text(lineText)
+                                        .font(.system(size: props.fontSize * currentZoom, weight: .regular, design: .monospaced))
+                                        .foregroundColor(Color(hex: props.currentTheme.foregroundHex))
+                                        .lineLimit(1)
+                                }
                                 Spacer(minLength: 0)
                             }
-                            .frame(height: (props.fontSize * currentZoom) * 1.2, alignment: .leading)
+                            .frame(height: (props.fontSize * currentZoom) * 1.25, alignment: .leading)
                         }
                     }
                     .padding(6)
@@ -59,7 +72,7 @@ public struct TerminalView: View {
                         }
                 )
                 .onTapGesture {
-                    isKeyboardVisible.toggle()
+                    isKeyboardVisible = true
                 }
                 .onLongPressGesture {
                     showingContextMenu = true
@@ -93,7 +106,7 @@ public struct TerminalView: View {
                     }
                 }
                 
-                // Extra Keys Toolbar
+                // Extra Keys Toolbar above the iOS on-screen keyboard
                 if isKeyboardVisible {
                     ExtraKeysView(session: session) {
                         withAnimation {
@@ -103,11 +116,56 @@ public struct TerminalView: View {
                 }
             }
         }
+        .onAppear {
+            startCursorTimer()
+        }
     }
     
-    private func renderLines() -> [String] {
+    @ViewBuilder
+    private func renderCursorLine(rowText: String, cursorCol: Int) -> some View {
+        let count = rowText.count
+        let col = min(max(0, cursorCol), max(0, count - 1))
+        
+        let prefixIdx = rowText.index(rowText.startIndex, offsetBy: col, limitedBy: rowText.endIndex) ?? rowText.startIndex
+        let prefixText = String(rowText[..<prefixIdx])
+        
+        let cursorCharIdx = rowText.index(prefixIdx, offsetBy: 1, limitedBy: rowText.endIndex) ?? rowText.endIndex
+        let cursorChar = (prefixIdx < rowText.endIndex) ? String(rowText[prefixIdx..<cursorCharIdx]) : " "
+        
+        let suffixText = (cursorCharIdx < rowText.endIndex) ? String(rowText[cursorCharIdx...]) : ""
+        
+        HStack(spacing: 0) {
+            Text(prefixText)
+                .font(.system(size: props.fontSize * currentZoom, weight: .regular, design: .monospaced))
+                .foregroundColor(Color(hex: props.currentTheme.foregroundHex))
+            
+            Text(cursorChar.isEmpty ? " " : cursorChar)
+                .font(.system(size: props.fontSize * currentZoom, weight: .bold, design: .monospaced))
+                .foregroundColor(Color(hex: props.currentTheme.backgroundHex))
+                .background(Color(hex: props.currentTheme.cursorHex))
+                .cornerRadius(props.cursorStyle == .bar ? 0 : 2)
+            
+            Text(suffixText)
+                .font(.system(size: props.fontSize * currentZoom, weight: .regular, design: .monospaced))
+                .foregroundColor(Color(hex: props.currentTheme.foregroundHex))
+        }
+    }
+    
+    private func renderLinesWithCursor() -> [String] {
         return session.buffer.screen.map { row in
             String(row.map { $0.character })
+        }
+    }
+    
+    private func startCursorTimer() {
+        guard props.cursorBlink else {
+            cursorVisible = true
+            return
+        }
+        Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) { _ in
+            DispatchQueue.main.async {
+                self.cursorVisible.toggle()
+            }
         }
     }
 }
