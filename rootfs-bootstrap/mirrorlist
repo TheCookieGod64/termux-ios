@@ -1,0 +1,14 @@
+#
+# /var/jb/etc/pacman.d/mirrorlist
+# Arch Linux ARM & Termux-iOS mirrors for arm64 (iPhone 8)
+#
+
+# Primary Termux-iOS Pacman Mirror
+Server = https://mirror.termux-ios.dev/$repo/os/$arch
+Server = https://eu.mirror.termux-ios.dev/$repo/os/$arch
+Server = https://us.mirror.termux-ios.dev/$repo/os/$arch
+
+# Fallback Arch Linux ARM aarch64 mirrors
+Server = http://mirror.archlinuxarm.org/$arch/$repo
+Server = http://eu.mirror.archlinuxarm.org/$arch/$repo
+Server = http://us.mirror.archlinuxarm.org/$arch/$repo

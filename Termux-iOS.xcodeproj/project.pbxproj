@@ -1,0 +1,370 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		110000012C50000100000001 /* TermuxApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110000012C50000200000001 /* TermuxApp.swift */; };
+		110000022C50000100000001 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110000022C50000200000001 /* AppDelegate.swift */; };
+		110000032C50000100000001 /* TerminalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110000032C50000200000001 /* TerminalView.swift */; };
+		110000042C50000100000001 /* ExtraKeysView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110000042C50000200000001 /* ExtraKeysView.swift */; };
+		110000052C50000100000001 /* ExtraKeyButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110000052C50000200000001 /* ExtraKeyButton.swift */; };
+		110000062C50000100000001 /* SidebarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110000062C50000200000001 /* SidebarView.swift */; };
+		110000072C50000100000001 /* SessionRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110000072C50000200000001 /* SessionRowView.swift */; };
+		110000082C50000100000001 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110000082C50000200000001 /* SettingsView.swift */; };
+		110000092C50000100000001 /* ColorSchemeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110000092C50000200000001 /* ColorSchemeView.swift */; };
+		1100000A2C50000100000001 /* PacmanSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1100000A2C50000200000001 /* PacmanSettingsView.swift */; };
+		1100000B2C50000100000001 /* PTYProcess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1100000B2C50000200000001 /* PTYProcess.swift */; };
+		1100000C2C50000100000001 /* TerminalSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1100000C2C50000200000001 /* TerminalSession.swift */; };
+		1100000D2C50000100000001 /* TerminalBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1100000D2C50000200000001 /* TerminalBuffer.swift */; };
+		1100000E2C50000100000001 /* VT100Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1100000E2C50000200000001 /* VT100Parser.swift */; };
+		1100000F2C50000100000001 /* TerminalColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1100000F2C50000200000001 /* TerminalColor.swift */; };
+		110000102C50000100000001 /* TermuxProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110000102C50000200000001 /* TermuxProperties.swift */; };
+		110000112C50000100000001 /* DefaultConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110000112C50000200000001 /* DefaultConfig.swift */; };
+		110000122C50000100000001 /* IPCManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110000122C50000200000001 /* IPCManager.swift */; };
+		110000132C50000100000001 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 110000132C50000200000001 /* Assets.xcassets */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		110000002C50000000000001 /* Termux-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Termux-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		110000012C50000200000001 /* TermuxApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermuxApp.swift; sourceTree = "<group>"; };
+		110000022C50000200000001 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		110000032C50000200000001 /* TerminalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerminalView.swift; sourceTree = "<group>"; };
+		110000042C50000200000001 /* ExtraKeysView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtraKeysView.swift; sourceTree = "<group>"; };
+		110000052C50000200000001 /* ExtraKeyButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtraKeyButton.swift; sourceTree = "<group>"; };
+		110000062C50000200000001 /* SidebarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarView.swift; sourceTree = "<group>"; };
+		110000072C50000200000001 /* SessionRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionRowView.swift; sourceTree = "<group>"; };
+		110000082C50000200000001 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		110000092C50000200000001 /* ColorSchemeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSchemeView.swift; sourceTree = "<group>"; };
+		1100000A2C50000200000001 /* PacmanSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PacmanSettingsView.swift; sourceTree = "<group>"; };
+		1100000B2C50000200000001 /* PTYProcess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PTYProcess.swift; sourceTree = "<group>"; };
+		1100000C2C50000200000001 /* TerminalSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerminalSession.swift; sourceTree = "<group>"; };
+		1100000D2C50000200000001 /* TerminalBuffer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerminalBuffer.swift; sourceTree = "<group>"; };
+		1100000E2C50000200000001 /* VT100Parser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VT100Parser.swift; sourceTree = "<group>"; };
+		1100000F2C50000200000001 /* TerminalColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerminalColor.swift; sourceTree = "<group>"; };
+		110000102C50000200000001 /* TermuxProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermuxProperties.swift; sourceTree = "<group>"; };
+		110000112C50000200000001 /* DefaultConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultConfig.swift; sourceTree = "<group>"; };
+		110000122C50000200000001 /* IPCManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IPCManager.swift; sourceTree = "<group>"; };
+		110000132C50000200000001 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		110000142C50000200000001 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		110000152C50000200000001 /* Termux-iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Termux-iOS.entitlements"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		110000002C50000A00000001 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		110000002C50000B00000001 = {
+			isa = PBXGroup;
+			children = (
+				110000002C50000C00000001 /* Termux-iOS */,
+				110000002C50000D00000001 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		110000002C50000C00000001 /* Termux-iOS */ = {
+			isa = PBXGroup;
+			children = (
+				110000002C50000E00000001 /* App */,
+				110000002C50000F00000001 /* Views */,
+				110000002C50001000000001 /* TerminalCore */,
+				110000002C50001100000001 /* Config */,
+				110000132C50000200000001 /* Assets.xcassets */,
+				110000142C50000200000001 /* Info.plist */,
+				110000152C50000200000001 /* Termux-iOS.entitlements */,
+			);
+			path = "Termux-iOS";
+			sourceTree = "<group>";
+		};
+		110000002C50000E00000001 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				110000012C50000200000001 /* TermuxApp.swift */,
+				110000022C50000200000001 /* AppDelegate.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		110000002C50000F00000001 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				110000032C50000200000001 /* TerminalView.swift */,
+				110000042C50000200000001 /* ExtraKeysView.swift */,
+				110000052C50000200000001 /* ExtraKeyButton.swift */,
+				110000062C50000200000001 /* SidebarView.swift */,
+				110000072C50000200000001 /* SessionRowView.swift */,
+				110000082C50000200000001 /* SettingsView.swift */,
+				110000092C50000200000001 /* ColorSchemeView.swift */,
+				1100000A2C50000200000001 /* PacmanSettingsView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		110000002C50001000000001 /* TerminalCore */ = {
+			isa = PBXGroup;
+			children = (
+				1100000B2C50000200000001 /* PTYProcess.swift */,
+				1100000C2C50000200000001 /* TerminalSession.swift */,
+				1100000D2C50000200000001 /* TerminalBuffer.swift */,
+				1100000E2C50000200000001 /* VT100Parser.swift */,
+				1100000F2C50000200000001 /* TerminalColor.swift */,
+			);
+			path = TerminalCore;
+			sourceTree = "<group>";
+		};
+		110000002C50001100000001 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				110000102C50000200000001 /* TermuxProperties.swift */,
+				110000112C50000200000001 /* DefaultConfig.swift */,
+				110000122C50000200000001 /* IPCManager.swift */,
+			);
+			path = Config;
+			sourceTree = "<group>";
+		};
+		110000002C50000D00000001 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				110000002C50000000000001 /* Termux-iOS.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		110000002C50001200000001 /* Termux-iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 110000002C50001500000001 /* Build configuration list for PBXNativeTarget "Termux-iOS" */;
+			buildPhases = (
+				110000002C50001300000001 /* Sources */,
+				110000002C50000A00000001 /* Frameworks */,
+				110000002C50001400000001 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Termux-iOS";
+			productName = "Termux-iOS";
+			productReference = 110000002C50000000000001 /* Termux-iOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		110000002C50001600000001 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1500;
+				LastUpgradeCheck = 1500;
+				TargetAttributes = {
+					110000002C50001200000001 = {
+						CreatedOnToolsVersion = 15.0;
+					};
+				};
+			};
+			buildConfigurationList = 110000002C50001700000001 /* Build configuration list for PBXProject "Termux-iOS" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 110000002C50000B00000001;
+			productRefGroup = 110000002C50000D00000001 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				110000002C50001200000001 /* Termux-iOS */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		110000002C50001400000001 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				110000132C50000100000001 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		110000002C50001300000001 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				110000012C50000100000001 /* TermuxApp.swift in Sources */,
+				110000022C50000100000001 /* AppDelegate.swift in Sources */,
+				110000032C50000100000001 /* TerminalView.swift in Sources */,
+				110000042C50000100000001 /* ExtraKeysView.swift in Sources */,
+				110000052C50000100000001 /* ExtraKeyButton.swift in Sources */,
+				110000062C50000100000001 /* SidebarView.swift in Sources */,
+				110000072C50000100000001 /* SessionRowView.swift in Sources */,
+				110000082C50000100000001 /* SettingsView.swift in Sources */,
+				110000092C50000100000001 /* ColorSchemeView.swift in Sources */,
+				1100000A2C50000100000001 /* PacmanSettingsView.swift in Sources */,
+				1100000B2C50000100000001 /* PTYProcess.swift in Sources */,
+				1100000C2C50000100000001 /* TerminalSession.swift in Sources */,
+				1100000D2C50000100000001 /* TerminalBuffer.swift in Sources */,
+				1100000E2C50000100000001 /* VT100Parser.swift in Sources */,
+				1100000F2C50000100000001 /* TerminalColor.swift in Sources */,
+				110000102C50000100000001 /* TermuxProperties.swift in Sources */,
+				110000112C50000100000001 /* DefaultConfig.swift in Sources */,
+				110000122C50000100000001 /* IPCManager.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		110000002C50001800000001 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		110000002C50001900000001 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		110000002C50001A00000001 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Termux-iOS/Termux-iOS.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Termux-iOS/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = Termux;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 0.118.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.termux.ios;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		110000002C50001B00000001 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Termux-iOS/Termux-iOS.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Termux-iOS/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = Termux;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 0.118.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.termux.ios;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		110000002C50001700000001 /* Build configuration list for PBXProject "Termux-iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				110000002C50001800000001 /* Debug */,
+				110000002C50001900000001 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		110000002C50001500000001 /* Build configuration list for PBXNativeTarget "Termux-iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				110000002C50001A00000001 /* Debug */,
+				110000002C50001B00000001 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+	};
+	rootObject = 110000002C50001600000001 /* Project object */;
+}

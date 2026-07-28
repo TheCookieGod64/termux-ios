@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+#
+# Protective wrapper for 'apt-get' on Termux-iOS
+# Enforces the use of 'pacman' / 'pkg' as requested.
+#
+
+RED='\033[0;31m'
+YELLOW='\033[1;33m'
+BOLD='\033[1m'
+RESET='\033[0m'
+
+echo -e "${RED}${BOLD}[Termux-iOS Error] 'apt-get' is disabled on this system.${RESET}" >&2
+echo -e "${YELLOW}Termux-iOS on iPhone 8 / palera1n uses PACMAN instead of APT.${RESET}" >&2
+echo "" >&2
+echo -e "Please use ${BOLD}'pacman'${RESET} or ${BOLD}'pkg'${RESET} for package management:" >&2
+echo -e "  * Install package : ${BOLD}pacman -S <pkg>${RESET}  (or: ${BOLD}pkg install <pkg>${RESET})" >&2
+echo -e "  * Update repo     : ${BOLD}pacman -Sy${RESET}        (or: ${BOLD}pkg update${RESET})" >&2
+echo -e "  * Upgrade system  : ${BOLD}pacman -Syu${RESET}       (or: ${BOLD}pkg upgrade${RESET})" >&2
+echo -e "  * Remove package  : ${BOLD}pacman -Rns <pkg>${RESET} (or: ${BOLD}pkg remove <pkg>${RESET})" >&2
+echo -e "  * Search package  : ${BOLD}pacman -Ss <name>${RESET} (or: ${BOLD}pkg search <name>${RESET})" >&2
+echo "" >&2
+exit 1

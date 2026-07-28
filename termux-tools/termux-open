@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+#
+# termux-open - Open a URL or file with the default iOS handler
+#
+
+if [ $# -eq 0 ]; then
+    echo "Usage: termux-open <url-or-file>"
+    exit 1
+fi
+
+TARGET="$1"
+
+if command -v uiopen >/dev/null 2>&1; then
+    uiopen "$TARGET"
+elif command -v open >/dev/null 2>&1; then
+    open "$TARGET"
+else
+    # Save URL request to trigger file for Termux-iOS app
+    echo "$TARGET" > "${HOME}/.termux/.open_request"
+    echo "[Termux-iOS] Requested open for: $TARGET"
+fi

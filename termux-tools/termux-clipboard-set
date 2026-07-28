@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+#
+# termux-clipboard-set - Set system clipboard content on iOS
+#
+
+CLIPBOARD_FILE="${HOME}/.termux/.clipboard"
+mkdir -p "$(dirname "$CLIPBOARD_FILE")" 2>/dev/null || true
+
+# Read from stdin
+DATA=$(cat)
+
+# Store in shared IPC file
+echo -n "$DATA" > "$CLIPBOARD_FILE"
+
+# Send to iOS pasteboard if commands are available
+if command -v pbcopy >/dev/null 2>&1; then
+    echo -n "$DATA" | pbcopy 2>/dev/null || true
+elif command -v uicopy >/dev/null 2>&1; then
+    echo -n "$DATA" | uicopy 2>/dev/null || true
+fi

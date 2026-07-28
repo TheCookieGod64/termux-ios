@@ -1,0 +1,102 @@
+#!/usr/bin/env bash
+#
+# pkg - Termux-iOS Package Manager Wrapper (Pacman Edition)
+# Translates Termux 'pkg' commands to 'pacman'
+# Strictly uses PACMAN; no APT support.
+#
+
+set -e
+
+# ANSI Colors for Termux aesthetic
+GREEN='\033[0;32m'
+CYAN='\033[0;36m'
+YELLOW='\033[1;33m'
+RED='\033[0;31m'
+BOLD='\033[1m'
+RESET='\033[0m'
+
+show_help() {
+    echo -e "${BOLD}Termux-iOS Package Manager (${CYAN}Pacman Edition${RESET}${BOLD})${RESET}"
+    echo "Usage: pkg [command] [packages...]"
+    echo ""
+    echo "Commands:"
+    echo "  install, i       Install package(s)"
+    echo "  uninstall, rm    Remove package(s)"
+    echo "  update           Update package databases"
+    echo "  upgrade          Upgrade all installed packages"
+    echo "  search           Search for package(s) in repositories"
+    echo "  show, info       Display details about a package"
+    echo "  list-all         List all packages available in repositories"
+    echo "  list-installed   List all installed packages"
+    echo "  clean            Remove cached package files"
+    echo "  help             Display this help message"
+    echo ""
+    echo -e "${YELLOW}Note: Termux-iOS is powered by 'pacman'. Apt/dpkg is disabled.${RESET}"
+}
+
+if [ $# -eq 0 ]; then
+    show_help
+    exit 0
+fi
+
+CMD="$1"
+shift
+
+case "$CMD" in
+    install|i|-i)
+        if [ $# -eq 0 ]; then
+            echo -e "${RED}Error:${RESET} No package specified for installation."
+            exit 1
+        fi
+        echo -e "${GREEN}${BOLD}==> Installing package(s) using pacman...${RESET}"
+        exec pacman -S "$@"
+        ;;
+    uninstall|remove|rm|-r)
+        if [ $# -eq 0 ]; then
+            echo -e "${RED}Error:${RESET} No package specified for removal."
+            exit 1
+        fi
+        echo -e "${GREEN}${BOLD}==> Removing package(s) using pacman...${RESET}"
+        exec pacman -Rns "$@"
+        ;;
+    update)
+        echo -e "${GREEN}${BOLD}==> Synchronizing package databases using pacman...${RESET}"
+        exec pacman -Sy "$@"
+        ;;
+    upgrade)
+        echo -e "${GREEN}${BOLD}==> Upgrading system packages using pacman...${RESET}"
+        exec pacman -Syu "$@"
+        ;;
+    search)
+        if [ $# -eq 0 ]; then
+            echo -e "${RED}Error:${RESET} No search term specified."
+            exit 1
+        fi
+        exec pacman -Ss "$@"
+        ;;
+    show|info)
+        if [ $# -eq 0 ]; then
+            echo -e "${RED}Error:${RESET} No package specified."
+            exit 1
+        fi
+        exec pacman -Qi "$@" 2>/dev/null || exec pacman -Si "$@"
+        ;;
+    list-installed)
+        exec pacman -Q "$@"
+        ;;
+    list-all)
+        exec pacman -Sl "$@"
+        ;;
+    clean)
+        echo -e "${GREEN}${BOLD}==> Cleaning pacman cache...${RESET}"
+        exec pacman -Sc "$@"
+        ;;
+    help|--help|-h)
+        show_help
+        ;;
+    *)
+        echo -e "${RED}Error:${RESET} Unknown command '$CMD'."
+        show_help
+        exit 1
+        ;;
+esac

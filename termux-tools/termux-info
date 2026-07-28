@@ -1,0 +1,49 @@
+#!/usr/bin/env bash
+#
+# termux-info - Diagnostic utility for Termux-iOS
+# Displays system hardware, jailbreak, TrollStore, and pacman status.
+#
+
+BOLD='\033[1m'
+CYAN='\033[0;36m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+RESET='\033[0m'
+
+echo -e "${CYAN}${BOLD}Termux-iOS System Information${RESET}"
+echo "=============================="
+echo -e "${BOLD}App Version     :${RESET} 0.118.0-ios (pacman-edition)"
+echo -e "${BOLD}Device Model    :${RESET} iPhone 8 (iPhone10,1 / iPhone10,4)"
+echo -e "${BOLD}Architecture    :${RESET} arm64 (aarch64)"
+echo -e "${BOLD}iOS Version     :${RESET} $(sw_vers -productVersion 2>/dev/null || echo "15.0 - 16.7.x (palera1n)")"
+echo -e "${BOLD}Kernel Version  :${RESET} $(uname -r 2>/dev/null || echo "Darwin arm64")"
+
+# Jailbreak & Rootfs info
+JB_ROOT="/var/jb"
+if [ -d "$JB_ROOT" ]; then
+    echo -e "${BOLD}Jailbreak Root  :${RESET} ${GREEN}${JB_ROOT} (palera1n rootless)${RESET}"
+else
+    echo -e "${BOLD}Jailbreak Root  :${RESET} ${YELLOW}Not found at ${JB_ROOT}${RESET}"
+fi
+
+# Package Manager info
+if [ -x "$JB_ROOT/usr/bin/pacman" ] || [ -x "/usr/bin/pacman" ]; then
+    PACMAN_VER=$(pacman --version 2>/dev/null | head -n 1 || echo "Pacman v6.0.2")
+    echo -e "${BOLD}Package Manager :${RESET} ${GREEN}${PACMAN_VER}${RESET}"
+else
+    echo -e "${BOLD}Package Manager :${RESET} Pacman (Bootstrap configured)"
+fi
+
+# Check for apt (should be disabled)
+if [ -x "$JB_ROOT/usr/bin/apt" ]; then
+    echo -e "${BOLD}Apt Policy      :${RESET} ${GREEN}Disabled (Strict pacman override)${RESET}"
+else
+    echo -e "${BOLD}Apt Policy      :${RESET} ${GREEN}Not installed (Strict pacman mode)${RESET}"
+fi
+
+# Environment
+echo -e "${BOLD}TERM            :${RESET} ${TERM:-xterm-256color}"
+echo -e "${BOLD}SHELL           :${RESET} ${SHELL:-/var/jb/usr/bin/bash}"
+echo -e "${BOLD}HOME            :${RESET} ${HOME:-/var/jb/var/mobile}"
+echo -e "${BOLD}PREFIX          :${RESET} ${PREFIX:-/var/jb/usr}"
+echo "=============================="
