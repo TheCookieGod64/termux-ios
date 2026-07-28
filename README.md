@@ -149,6 +149,7 @@ runtime to execute, so they run on the phone.
 - [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) — how the pieces fit together
 - [docs/TESTING.md](docs/TESTING.md) — running the on-device test suite
 - [docs/ENTITLEMENTS.md](docs/ENTITLEMENTS.md) — what each entitlement buys
+- [docs/ci/](docs/ci/) — a GitHub Actions workflow you can drop in
 
 ## Licence
 

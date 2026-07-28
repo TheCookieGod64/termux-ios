@@ -88,5 +88,6 @@ sequences and the `Check*` helpers to assert.
 
 ## Continuous integration
 
-`.github/workflows/build.yml` runs the host suite and uploads the built
-`.ipa` as an artifact on every push.
+A ready-to-use GitHub Actions workflow is provided at `docs/ci/build.yml`. It
+caches the toolchain, runs the host suite, builds the `.ipa` and uploads it as
+an artifact. See `docs/ci/README.md` for how to enable it.
