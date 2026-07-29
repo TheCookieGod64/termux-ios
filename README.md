@@ -1,29 +1,28 @@
 # Termux-iOS — standalone terminal app
 
-Dit archief bevat alleen het Termux-iOS-terminalproject voor iOS 15/16, iPhone 8, palera1n rootless (`/var/jb`) en TrollStore.
+This archive contains only the Termux-iOS terminal project for iOS 15/16, iPhone 8, palera1n rootless (`/var/jb`) and TrollStore.
 
-Inbegrepen:
+Included:
 
-- SwiftUI/UIKit-terminalapp in `Termux-iOS/`;
-- UIKit `UIKeyInput` keyboard bridge en Extra Keys;
-- terminalbuffer, VT100-parser, PTY en thema’s;
+- SwiftUI/UIKit terminal app in `Termux-iOS/`;
+- UIKit `UIKeyInput` keyboard bridge and extra keys;
+- terminal buffer, VT100 parser, PTY, and themes;
 - native `jb-chroot` helper;
-- pacman-only bootstrap met `pkg`, `pacman.conf` en mirrorlist;
+- pacman-only bootstrap with `pkg`, `pacman.conf`, and mirrorlist;
 - `apt`/`apt-get` guards;
-- TrollStore buildscript voor `Termux-iOS.ipa` en `Termux-iOS.tipa`.
+- TrollStore build scripts for `Termux-iOS.ipa` and `Termux-iOS.tipa`.
 
-`JITAllower` is niet opgenomen.
 
-## Controleren op Arch Linux
+## Check for Arch Linux
 
 ```bash
 make check
 ```
 
-## Bouwen
+## Build
 
-Een volledige iOS-build heeft Xcode/iPhoneOS SDK nodig. Zonder macOS kun je de GitHub Actions-workflow gebruiken of een compatibele iOS-cross-toolchain instellen.
+A complete iOS build requires Xcode / the iPhoneOS SDK. Without macOS, you can use the GitHub Actions workflow or set up a compatible iOS cross-toolchain.
 
 ```bash
-IOS_SDK=/pad/naar/iphoneos.sdk IOS_CLANG=/pad/naar/clang make
+IOS_SDK=/path/to/iphoneos.sdk IOS_CLANG=/path/to/clang make
 ```
