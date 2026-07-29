@@ -1,0 +1,47 @@
+#!/usr/bin/env bash
+#
+# termux-setup-storage - Set up storage symlinks for Termux-iOS
+# Symlinks iOS mobile media directories into ~/storage
+#
+
+GREEN='\033[0;32m'
+BOLD='\033[1m'
+YELLOW='\033[1;33m'
+RESET='\033[0m'
+
+STORAGE_DIR="${HOME}/storage"
+IOS_MEDIA="/var/mobile/Media"
+IOS_DOCS="/var/mobile/Documents"
+
+echo -e "${GREEN}${BOLD}[+] Setting up iOS storage symlinks in $STORAGE_DIR...${RESET}"
+
+mkdir -p "$STORAGE_DIR"
+
+# Symlink iOS Media directories if available
+if [ -d "$IOS_MEDIA/DCIM" ]; then
+    ln -sf "$IOS_MEDIA/DCIM" "$STORAGE_DIR/dcim"
+else
+    mkdir -p "$STORAGE_DIR/dcim"
+fi
+
+if [ -d "$IOS_MEDIA/Downloads" ]; then
+    ln -sf "$IOS_MEDIA/Downloads" "$STORAGE_DIR/downloads"
+else
+    mkdir -p "$STORAGE_DIR/downloads"
+fi
+
+if [ -d "$IOS_MEDIA/PhotoData" ]; then
+    ln -sf "$IOS_MEDIA/PhotoData" "$STORAGE_DIR/pictures"
+else
+    mkdir -p "$STORAGE_DIR/pictures"
+fi
+
+# Symlink general shared/mobile directory
+if [ -d "/var/mobile" ]; then
+    ln -sf "/var/mobile" "$STORAGE_DIR/shared"
+else
+    mkdir -p "$STORAGE_DIR/shared"
+fi
+
+echo -e "${GREEN}[✔] Storage directories set up in $STORAGE_DIR:${RESET}"
+ls -l "$STORAGE_DIR"

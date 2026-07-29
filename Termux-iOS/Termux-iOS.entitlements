@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <!-- TrollStore Platform App & Sandbox Bypass -->
+    <key>platform-application</key>
+    <true/>
+    <key>com.apple.private.security.no-sandbox</key>
+    <true/>
+    <key>com.apple.private.security.no-container</key>
+    <true/>
+
+    <!-- Process spawning & chroot permissions for /var/jb -->
+    <key>com.apple.private.posix_spawn-allow</key>
+    <true/>
+    <key>com.apple.private.vfs.pivot-root</key>
+    <true/>
+    <key>com.apple.private.kernel.get-kext-info</key>
+    <true/>
+
+    <!-- Task ports & process inspection (for job control / killing sessions) -->
+    <key>task_for_pid-allow</key>
+    <true/>
+    <key>get-task-allow</key>
+    <true/>
+    <key>com.apple.private.cs.debugger</key>
+    <true/>
+    <key>com.apple.system-task-ports</key>
+    <true/>
+
+    <!-- Storage and mobile filesystem access -->
+    <key>com.apple.private.security.storage.AppDataContainers</key>
+    <true/>
+    <key>com.apple.private.tcc.allow</key>
+    <array>
+        <string>kTCCServicePhotos</string>
+        <string>kTCCServiceMediaLibrary</string>
+        <string>kTCCServiceSystemPolicyAllFiles</string>
+    </array>
+
+    <!-- Pseudo-terminal (PTY) entitlement -->
+    <key>com.apple.private.kernel.override-cpusubtype</key>
+    <true/>
+</dict>
+</plist>

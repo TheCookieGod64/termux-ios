@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+#
+# termux-chroot - Enter the /var/jb chroot environment on iOS
+#
+
+JB_CHROOT="/var/jb/usr/bin/jb-chroot"
+
+if [ -x "$JB_CHROOT" ]; then
+    exec "$JB_CHROOT" "$@"
+elif [ -x "/usr/bin/jb-chroot" ]; then
+    exec "/usr/bin/jb-chroot" "$@"
+else
+    # Fallback to local build path if testing
+    SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+    if [ -x "$SCRIPT_DIR/../src/jb-chroot/jb-chroot" ]; then
+        exec "$SCRIPT_DIR/../src/jb-chroot/jb-chroot" "$@"
+    else
+        echo "Error: jb-chroot helper not found." >&2
+        exit 127
+    fi
+fi

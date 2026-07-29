@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+#
+# termux-reload-settings - Reloads Termux-iOS configuration files
+# (~/.termux/termux.properties, colors.properties, font.ttf)
+#
+
+GREEN='\033[0;32m'
+BOLD='\033[1m'
+RESET='\033[0m'
+
+TERMUX_DIR="${HOME}/.termux"
+if [ ! -d "$TERMUX_DIR" ]; then
+    TERMUX_DIR="/var/jb/var/mobile/.termux"
+fi
+
+echo -e "${GREEN}${BOLD}[+] Reloading Termux-iOS settings from $TERMUX_DIR...${RESET}"
+
+# Touch a trigger file for the iOS App file watcher
+if [ -d "$TERMUX_DIR" ]; then
+    touch "$TERMUX_DIR/.reload_trigger" 2>/dev/null || true
+fi
+
+# Try sending Darwin notification if notifyutil or sbreload/killall exists
+if command -v notifyutil >/dev/null 2>&1; then
+    notifyutil -p com.termux.ios.reload-settings 2>/dev/null || true
+fi
+
+echo -e "${GREEN}[✔] Settings reloaded. Extra keys, colors, and fonts updated.${RESET}"

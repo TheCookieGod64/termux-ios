@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+#
+# termux-clipboard-get - Get system clipboard content on iOS
+#
+
+CLIPBOARD_FILE="${HOME}/.termux/.clipboard"
+
+if command -v pbpaste >/dev/null 2>&1; then
+    pbpaste
+elif command -v uipaste >/dev/null 2>&1; then
+    uipaste
+elif [ -f "$CLIPBOARD_FILE" ]; then
+    cat "$CLIPBOARD_FILE"
+else
+    # Fallback message
+    echo ""
+fi

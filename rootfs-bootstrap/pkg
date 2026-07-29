@@ -1,0 +1,99 @@
+#!/usr/bin/env bash
+# Termux-iOS `pkg` compatibility wrapper.
+# Pacman is the only package manager. apt, apt-get and dpkg are not used.
+set -euo pipefail
+
+readonly RED=$'\033[0;31m'
+readonly GREEN=$'\033[0;32m'
+readonly CYAN=$'\033[0;36m'
+readonly YELLOW=$'\033[1;33m'
+readonly BOLD=$'\033[1m'
+readonly RESET=$'\033[0m'
+
+# In /var/jb rootless mode this resolves to the installed pacman first, even
+# when the caller's ambient PATH does not yet contain /var/jb/usr/bin.
+pacman_bin="${PACMAN_BIN:-}"
+if [[ -z "$pacman_bin" ]]; then
+    for candidate in /var/jb/usr/bin/pacman "${PREFIX:-}/bin/pacman" /usr/bin/pacman; do
+        if [[ -x "$candidate" ]]; then
+            pacman_bin="$candidate"
+            break
+        fi
+    done
+fi
+pacman_bin="${pacman_bin:-pacman}"
+
+# pacman sees / as its root after a real chroot. In rootless prefix mode it
+# must be pointed at /var/jb explicitly, otherwise an install could target the
+# host filesystem. The command mapping remains pacman -S/-Sy/-Syu/etc.
+pacman_prefix=()
+if [[ "${TERMUX_IOS_CHROOT:-0}" != "1" && -d /var/jb ]]; then
+    pacman_prefix=(--root /var/jb --dbpath /var/jb/var/lib/pacman --cachedir /var/jb/var/cache/pacman/pkg --config /var/jb/etc/pacman.conf)
+fi
+
+usage() {
+    cat <<EOF
+${BOLD}Termux-iOS package manager (${CYAN}pacman edition${RESET}${BOLD})${RESET}
+Usage: pkg <command> [package ...]
+
+  install, i <pkg>      pacman -S <pkg ...>
+  uninstall, remove     pacman -Rns <pkg ...>
+  update                pacman -Sy
+  upgrade               pacman -Syu
+  search <term>         pacman -Ss <term ...>
+  show, info <pkg>      pacman -Si <pkg ...>
+  list-installed        pacman -Q
+  list-all              pacman -Sl
+  clean                 pacman -Sc
+  help                  show this help
+
+apt, apt-get and dpkg are deliberately disabled; use pacman or pkg.
+EOF
+}
+
+[[ $# -gt 0 ]] || { usage; exit 0; }
+command="$1"
+shift
+
+case "$command" in
+    install|i|-i)
+        [[ $# -gt 0 ]] || { echo "${RED}pkg: missing package name${RESET}" >&2; exit 2; }
+        echo "${GREEN}${BOLD}==> pacman -S $*${RESET}"
+        exec "$pacman_bin" "${pacman_prefix[@]}" -S "$@"
+        ;;
+    uninstall|remove|rm|-r)
+        [[ $# -gt 0 ]] || { echo "${RED}pkg: missing package name${RESET}" >&2; exit 2; }
+        exec "$pacman_bin" "${pacman_prefix[@]}" -Rns "$@"
+        ;;
+    update)
+        exec "$pacman_bin" "${pacman_prefix[@]}" -Sy "$@"
+        ;;
+    upgrade)
+        exec "$pacman_bin" "${pacman_prefix[@]}" -Syu "$@"
+        ;;
+    search)
+        [[ $# -gt 0 ]] || { echo "${RED}pkg: missing search term${RESET}" >&2; exit 2; }
+        exec "$pacman_bin" "${pacman_prefix[@]}" -Ss "$@"
+        ;;
+    show|info)
+        [[ $# -gt 0 ]] || { echo "${RED}pkg: missing package name${RESET}" >&2; exit 2; }
+        exec "$pacman_bin" "${pacman_prefix[@]}" -Si "$@"
+        ;;
+    list-installed)
+        exec "$pacman_bin" "${pacman_prefix[@]}" -Q "$@"
+        ;;
+    list-all)
+        exec "$pacman_bin" "${pacman_prefix[@]}" -Sl "$@"
+        ;;
+    clean)
+        exec "$pacman_bin" "${pacman_prefix[@]}" -Sc "$@"
+        ;;
+    help|-h|--help)
+        usage
+        ;;
+    *)
+        echo "${YELLOW}pkg: unknown command '$command'; pass pacman options with 'pkg pacman ...' is not supported.${RESET}" >&2
+        usage >&2
+        exit 2
+        ;;
+esac

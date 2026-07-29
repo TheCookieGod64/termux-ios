@@ -1,0 +1,36 @@
+name: Build Termux-iOS
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Build Termux-iOS IPA/TIPA
+    runs-on: macos-14
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install ldid
+        run: brew install ldid
+
+      - name: Run checks
+        run: make check
+
+      - name: Build Termux-iOS
+        run: make
+
+      - name: Upload Termux-iOS artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: Termux-iOS-TrollStore
+          path: |
+            dist/Termux-iOS.ipa
+            dist/Termux-iOS.tipa
